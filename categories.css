@@ -1,0 +1,15 @@
+.categories {
+}
+
+.categories-item {
+    margin: 0 .8rem .4rem 0;
+    padding: .2rem .6rem;
+    text-align: center;
+    cursor: default;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.categories-item_active {
+    background-color: #eee;
+}
