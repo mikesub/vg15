@@ -21,7 +21,7 @@ var People = React.createClass({
     },
 
     render: function(){
-       return <div>found {this.calc()} entries in these categories</div>;
+       return <div><strong>{this.calc()} out of {this.props.data.length}</strong></div>;
    }
 });
 
