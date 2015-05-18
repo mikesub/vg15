@@ -12,8 +12,9 @@
     ]
   },
   "scripts": {
-    "prepublish": "browserify main.js -o bundle.js",
-    "start": "python -m SimpleHTTPServer",
-    "watch": "./node_modules/.bin/watchify main.js -o bundle.js --debug --verbose"
+    "prepublish": "npm run build",
+    "start": "npm run build; python -m SimpleHTTPServer",
+    "build": "browserify main.js -o bundle.js",
+    "watch": "watchify main.js -o bundle.js --debug --verbose"
   }
 }
