@@ -48,6 +48,10 @@ var Root = React.createClass({
     }
 });
 
-React.render(<Root data={data}/>, document.getElementById('root'));
+module.exports = function(node){
+    React.render(<Root data={data}/>, node);
+};
+
+
 
 
