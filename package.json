@@ -2,19 +2,23 @@
   "private": true,
   "devDependencies": {
     "browserify": ">=10.2.0",
-    "watchify": ">=3.2.1",
+    "moment": "^2.10.3",
+    "react": ">=0.13.3",
     "reactify": ">=1.1.1",
-    "react": ">=0.13.3"
+    "watchify": ">=3.2.1",
+    "object-assign": "^2.0.0"
   },
   "browserify": {
     "transform": [
-      ["reactify"]
+      [
+        "reactify"
+      ]
     ]
   },
   "scripts": {
     "prepublish": "npm run build",
     "start": "npm run build; python -m SimpleHTTPServer",
-    "build": "browserify main.js -o bundle.js",
-    "watch": "watchify main.js -o bundle.js --debug --verbose"
+    "build": "browserify js/main.js -o ./bundle.js",
+    "watch": "watchify js/main.js -o ./bundle.js --debug --verbose"
   }
 }

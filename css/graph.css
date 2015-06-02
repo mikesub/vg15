@@ -1,0 +1,16 @@
+.graph {
+    margin-bottom: 5px;
+    height: 20px;
+}
+
+.graph__title {
+    width: 100px;
+    height: 20px;
+    display: inline-block;
+}
+
+.graph__bar {
+    background: deepskyblue;
+    height: 20px;
+    display: inline-block;
+}
