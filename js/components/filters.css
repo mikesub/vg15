@@ -1,0 +1,25 @@
+.filter {
+    margin-bottom: 10px;
+}
+
+.filter-header {
+    margin-bottom: 5px;
+}
+
+.filter-button {
+    margin: .2rem;
+    padding: .2rem .4rem;
+    text-align: center;
+    cursor: default;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.filter-button.off {
+    background-color: #fff !important;
+}
+
+.filter-button:first-child {
+    margin-left: 0;
+}

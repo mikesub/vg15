@@ -1,24 +1,18 @@
 {
   "private": true,
   "devDependencies": {
-    "browserify": ">=10.2.0",
-    "moment": "^2.10.3",
-    "react": ">=0.13.3",
-    "reactify": ">=1.1.1",
-    "watchify": ">=3.2.1",
-    "object-assign": "^2.0.0"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "reactify"
-      ]
-    ]
+    "http-server": ">=0.8"
   },
   "scripts": {
-    "prepublish": "npm run build",
-    "start": "npm run build; python -m SimpleHTTPServer",
-    "build": "browserify js/main.js -o ./bundle.js",
-    "watch": "watchify js/main.js -o ./bundle.js --debug --verbose"
+    "start": "npm run serve | npm run dev",
+    "serve": "./node_modules/.bin/http-server -p 8000",
+    "dev": "webpack-dev-server --progress --colors --port 8080"
+  },
+  "dependencies": {
+    "css-loader": "^0.14.4",
+    "json-loader": "^0.5.2",
+    "normalize.css": "^3.0.3",
+    "randomcolor": "^0.2.0",
+    "style-loader": "^0.12.3"
   }
 }

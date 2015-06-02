@@ -1,12 +1,13 @@
 var React = require('react');
 
-var Categories = require('./categories.react');
+var Filters = require('./filters.react');
 var Graph = require('./graph.react');
 
+require('./root.css');
+
 module.exports = function(node){
-    React.render((<div>
-        <Categories/>
-        <hr/>
+    React.render((<div className="root">
+        <Filters/>
         <Graph/>
     </div>), node);
 };
