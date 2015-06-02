@@ -8,7 +8,7 @@ var Graph = React.createClass({
     // needs active categories & all data to filter from it
 
     componentWillMount: function(){
-        loadCSS('/css/graph.css');
+        loadCSS('css/graph.css');
     },
 
     getInitialState: function(){

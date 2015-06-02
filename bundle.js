@@ -12,7 +12,7 @@ var store = require('../store');
 var Categories = React.createClass({displayName: "Categories",
 
     componentWillMount: function(){
-        loadCSS('/css/categories.css');
+        loadCSS('css/categories.css');
     },
 
     getInitialState: function(){
@@ -80,7 +80,7 @@ var Graph = React.createClass({displayName: "Graph",
     // needs active categories & all data to filter from it
 
     componentWillMount: function(){
-        loadCSS('/css/graph.css');
+        loadCSS('css/graph.css');
     },
 
     getInitialState: function(){
