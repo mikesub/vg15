@@ -1,24 +1,13 @@
-var EventEmitter = require('events').EventEmitter;
+import { EventEmitter } from 'events';
 
-var objectAssign = require('object-assign');
-var randomColor = require('randomcolor');
+import dispatcher from './dispatcher';
 
-var dispatcher = require('./dispatcher');
-var data = require('../data.json');
+import data from '../data/vg15.json';
 
-var categories = data.map(function(i){
-    return i.category;
-}).filter(function(value, index, self){
-    return self.indexOf(value) === index;
-});
-
-var colors = randomColor({ count: categories.length, luminosity: 'light' });
-
-categories = categories.map(function(value, i){
-    var pretty = value.replace(' ', '');
-    if (pretty === '') { pretty = '?'; }
-    return {value: value, pretty: pretty, active: true, color: colors[i]};
-});
+let categories = data
+    .map((i) => i.category)
+    .filter((value, index, self) => self.indexOf(value) === index)
+    .map((value, i) => ({value: value, pretty: value.replace(' ', '').replace(/^$/,'?'), active: true}));
 
 categories.sort(function (a, b) {
     if (a.pretty > b.pretty) { return  1; }
@@ -26,11 +15,14 @@ categories.sort(function (a, b) {
     return 0;
 });
 
-var store = objectAssign({}, EventEmitter.prototype, {
-    categories: categories,
-    data: data,
-    graphStep: 600
-});
+class Store extends EventEmitter {
+    constructor() {
+        super();
+        this.categories = categories;
+        this.data = data;
+        this.graphStep = 600;
+    }
+}
 
 dispatcher.addListener('toggleCategory', function(value) {
     store.categories = store.categories.map(function(i){
@@ -49,4 +41,5 @@ dispatcher.addListener('changeGraphStep', function(value) {
     store.emit('change');
 });
 
-module.exports = store;
+var store = new Store();
+export default store;

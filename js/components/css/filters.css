@@ -4,20 +4,24 @@
 
 .filter-header {
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .filter-button {
     margin: .2rem;
-    padding: .2rem .4rem;
+    padding: .2rem;
     text-align: center;
     cursor: default;
     white-space: nowrap;
     display: inline-block;
     border-radius: 4px;
+    border: 1px solid #fff;
+    min-width: 3rem;
 }
 
-.filter-button.off {
-    background-color: #fff !important;
+.filter-button.active {
+    background-color: #eee;
+    border-color: #ccc;
 }
 
 .filter-button:first-child {

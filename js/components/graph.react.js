@@ -1,36 +1,39 @@
-var React = require('react');
-var moment = require('moment');
+import styles from './css/graph.css';
 
-require("./graph.css");
-var store = require('../store');
+import React from 'react';
+import moment from 'moment';
 
-var Graph = React.createClass({
+import store from '../store';
+
+export default class Graph extends React.Component {
     // needs active categories & all data to filter from it
 
-    getInitialState: function(){
-        return {
+    constructor(props) {
+        super(props);
+        this.state = {
             categories: store.categories,
             data: store.data,
             graphStep: store.graphStep
         };
-    },
+        this.onCategoriesChange = this.onCategoriesChange.bind(this);
+    }
 
-    componentDidMount: function(){
+    componentDidMount() {
         store.addListener('change', this.onCategoriesChange);
-    },
+    }
 
-    componentWillUnmount: function(){
+    componentWillUnmount() {
         store.removeListener('change', this.onCategoriesChange);
-    },
+    }
 
-    onCategoriesChange: function(){
+    onCategoriesChange() {
         this.setState({
             categories: store.categories,
             graphStep: store.graphStep
         });
-    },
+    }
 
-    calc: function(){
+    calc() {
         var activeCategories = this.state.categories.filter(function(i){
             return i.active;
         }).map(function(i){
@@ -70,9 +73,9 @@ var Graph = React.createClass({
             graph.push([x, humanize(x), getCount(filteredData, x)]);
         }
         return graph;
-    },
+    }
 
-    render: function(){
+    render() {
        return (
             <div>
                 {this.calc().map(function(item){
@@ -81,17 +84,10 @@ var Graph = React.createClass({
             </div>
         );
    }
-});
+}
 
-var Bar = React.createClass({
-    render: function() {
-        if (this.props.number === 0) {
-            return (
-                <div className="graph">
-                    <div className="graph-title">&lt;{this.props.title}</div>
-                </div>
-            );
-        }
+class Bar extends React.Component {
+    render() {
         return (
             <div className="graph">
                 <div className="graph-title">&lt;{this.props.title}</div>
@@ -101,6 +97,4 @@ var Bar = React.createClass({
             </div>
         );
     }
-});
-
-module.exports = Graph;
+}

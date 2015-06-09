@@ -1,15 +1,17 @@
-var React = require('react');
+import styles from './css/root.css';
 
-var Filters = require('./filters.react');
-var Graph = require('./graph.react');
+import React from 'react';
 
-require('./root.css');
+import Filters from './filters.react';
+import Graph from './graph.react';
 
-module.exports = function(node){
-    React.render((<div className="root">
-        <Filters/>
-        <Graph/>
-    </div>), node);
+export default function(node){
+    React.render((
+        <div className="root">
+            <Filters/>
+            <Graph/>
+        </div>
+    ), node);
 };
 
 

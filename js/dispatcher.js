@@ -1,2 +1,2 @@
-var ee =  require('events').EventEmitter;
-module.exports = new ee;
+import { EventEmitter } from 'events';
+export default new EventEmitter();

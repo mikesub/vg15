@@ -1,46 +1,46 @@
-require("./filters.css");
+import styles from './css/filters.css';
 
-var React = require('react');
+import React from 'react';
 
-var dispatcher = require('../dispatcher');
-var store = require('../store');
+import dispatcher from '../dispatcher';
+import store from '../store';
 
-var Filters = React.createClass({
-    getInitialState: function(){
-        return {
+export default class Filters extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             categories: store.categories,
             graphStep: store.graphStep
         };
-    },
+        this.onChange = this.onChange.bind(this);
+    }
 
-    componentDidMount: function(){
+    componentDidMount() {
         store.addListener('change', this.onChange);
-    },
+    }
 
-    componentWillUnmount: function(){
+    componentWillUnmount() {
         store.removeListener('change', this.onChange);
-    },
+    }
 
-    onChange: function(){
+    onChange() {
         this.setState({
             categories: store.categories,
             graphStep: store.graphStep
         });
-    },
+    }
 
-    onStepChange: function(event){
+    onStepChange(event) {
         dispatcher.emit('changeGraphStep', Number(event.target.value));
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div className="filters">
                 <div className="filter">
                     <div className="filter-header">Categories</div>
                     <div>
-                        {this.state.categories.map(function(item){
-                            return <Category key={item.value} data={item} />;
-                        }.bind(this))}
+                        {this.state.categories.map((item) => <Category key={item.value} data={item} />)}
                     </div>
                 </div>
                 <div className="filter">
@@ -53,25 +53,25 @@ var Filters = React.createClass({
             </div>
         );
     }
-});
+}
 
-var Category = React.createClass({
+class Category extends React.Component {
 
-    onClick: function() {
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
         dispatcher.emit('toggleCategory', this.props.data.value);
-    },
+    }
 
-    render: function() {
-        var className = 'filter-button';
-        if (!this.props.data.active) {
-            className += ' off';
-        }
+    render() {
+        let className = this.props.data.active ? 'filter-button active' : 'filter-button';
         return (
-            <div onClick={this.onClick} className={className} style={{backgroundColor: this.props.data.color}}>
+            <div onClick={this.onClick} className={className}>
                 {this.props.data.pretty}
             </div>
         );
     }
-});
-
-module.exports = Filters;
+}

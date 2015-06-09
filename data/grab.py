@@ -9,7 +9,7 @@ import math
 import requests
 from lxml import html
 
-DATA_PATH = './data.json'
+DATA_PATH = './vg15.json'
 
 if os.path.exists(DATA_PATH):
     sys.exit('{} exists'.format(DATA_PATH))

@@ -1,13 +1,21 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
-    entry: "./js/main.js",
+    entry: './js/main.js',
     output: {
-        publicPath: 'http://localhost:8080/assets'
+        path: 'build',
+        filename: 'bundle.js'
     },
     module: {
         loaders: [
-            { test: /\.css$/, loaders: ["style", "css"] },
-            { test: /\.react.js$/, loader: 'jsx'},
-            { test: /\.json$/, loader: 'json'}
+            { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
+            { test: /\.js$/, loader: 'babel?optional[]=runtime', exclude: /node_modules/ },
+            { test: /\.json$/, loaders: ['json'] }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({title:'vg15'}),
+        new ExtractTextPlugin('css.css')
+    ]
 };
