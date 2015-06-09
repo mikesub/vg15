@@ -1,10 +1,8 @@
 import { EventEmitter } from 'events';
 
-import dispatcher from './dispatcher';
-
 import data from '../data/vg15.json';
 
-let categories = data
+const categories = data
     .map((i) => i.category)
     .filter((value, index, self) => self.indexOf(value) === index)
     .map((value, i) => ({value: value, pretty: value.replace(' ', '').replace(/^$/,'?'), active: true}));
@@ -22,24 +20,22 @@ class Store extends EventEmitter {
         this.data = data;
         this.graphStep = 600;
     }
+
+    toggleCategory(value) {
+        this.categories = this.categories.map(function (i) {
+            if (i.value === value) {
+                i.active = !i.active;
+            }
+            return i;
+        });
+        this.emit('update');
+    }
+
+    changeGraphStep(value) {
+        this.graphStep = value;
+        this.emit('update');
+    }
 }
-
-dispatcher.addListener('toggleCategory', function(value) {
-    store.categories = store.categories.map(function(i){
-        if (i.value === value) {
-            i.active = !i.active;
-        }
-        return i;
-    });
-
-    store.emit('change');
-});
-
-dispatcher.addListener('changeGraphStep', function(value) {
-    store.graphStep = value;
-
-    store.emit('change');
-});
 
 var store = new Store();
 export default store;

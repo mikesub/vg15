@@ -1,0 +1,20 @@
+.category-button {
+    margin: .2rem;
+    padding: .2rem;
+    text-align: center;
+    cursor: default;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    min-width: 3rem;
+}
+
+.category-button.active {
+    background-color: #eee;
+    border-color: #ccc;
+}
+
+.category-button:first-child {
+    margin-left: 0;
+}

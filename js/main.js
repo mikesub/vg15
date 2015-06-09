@@ -1,9 +1,10 @@
-import go from './components/root.react';
+import Root from './components/root.react';
+import React from 'react';
 
 window.document.addEventListener('DOMContentLoaded', function(){
-    var div = window.document.createElement('div');
-    go(div);
-    window.document.body.appendChild(div);
+    var node = window.document.createElement('div');
+    window.document.body.appendChild(node);
+    React.render(<Root/>, node);
 });
 
 

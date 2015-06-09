@@ -6,43 +6,14 @@ import moment from 'moment';
 import store from '../store';
 
 export default class Graph extends React.Component {
-    // needs active categories & all data to filter from it
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            categories: store.categories,
-            data: store.data,
-            graphStep: store.graphStep
-        };
-        this.onCategoriesChange = this.onCategoriesChange.bind(this);
-    }
-
-    componentDidMount() {
-        store.addListener('change', this.onCategoriesChange);
-    }
-
-    componentWillUnmount() {
-        store.removeListener('change', this.onCategoriesChange);
-    }
-
-    onCategoriesChange() {
-        this.setState({
-            categories: store.categories,
-            graphStep: store.graphStep
-        });
-    }
 
     calc() {
-        var activeCategories = this.state.categories.filter(function(i){
-            return i.active;
-        }).map(function(i){
-            return i.value;
-        });
+        var activeCategories = this.props.categories
+            .filter((i) => i.active)
+            .map((i) => i.value);
 
-        var filteredData = this.state.data.filter(function(i) {
-            return activeCategories.indexOf(i.category) !== -1;
-        });
+        var filteredData = this.props.data
+            .filter((i) => activeCategories.indexOf(i.category) !== -1);
 
         var maxX = filteredData.reduce(function(prev, cur){
             return prev.time_secs > cur.time_secs ? prev : cur;
@@ -67,7 +38,7 @@ export default class Graph extends React.Component {
             }
         };
 
-        var step = this.state.graphStep;
+        var step = this.props.graphStep;
         var graph = [];
         for (var x=Math.ceil(minX/step)*step; x<maxX+step; x=x+step) {
             graph.push([x, humanize(x), getCount(filteredData, x)]);
@@ -78,9 +49,7 @@ export default class Graph extends React.Component {
     render() {
        return (
             <div>
-                {this.calc().map(function(item){
-                    return <Bar key={item[0]} number={item[2]} title={item[1]} />;
-                }.bind(this))}
+                {this.calc().map((i) => <Bar key={i[0]} number={i[2]} title={i[1]} />)}
             </div>
         );
    }
