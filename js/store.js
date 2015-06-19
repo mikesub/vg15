@@ -1,41 +1,22 @@
-import { EventEmitter } from 'events';
-
 import data from '../data/vg15.json';
+var onUp = null;
 
-const categories = data
-    .map((i) => i.category)
-    .filter((value, index, self) => self.indexOf(value) === index)
-    .map((value, i) => ({value: value, pretty: value.replace(' ', '').replace(/^$/,'?'), active: true}));
+export const state = {
+  selectedNumber: undefined,
+  data: data,
+  graphStep: 600
+};
 
-categories.sort(function (a, b) {
-    if (a.pretty > b.pretty) { return  1; }
-    if (a.pretty < b.pretty) { return -1; }
-    return 0;
-});
-
-class Store extends EventEmitter {
-    constructor() {
-        super();
-        this.categories = categories;
-        this.data = data;
-        this.graphStep = 600;
-    }
-
-    toggleCategory(value) {
-        this.categories = this.categories.map(function (i) {
-            if (i.value === value) {
-                i.active = !i.active;
-            }
-            return i;
-        });
-        this.emit('update');
-    }
-
-    changeGraphStep(value) {
-        this.graphStep = value;
-        this.emit('update');
-    }
+export function registerCallback(cb){
+  onUp = cb;
 }
 
-var store = new Store();
-export default store;
+export function selectNumber(number) {
+  state.selectedNumber = data.filter((i) => Number(i.number) === number)[0];
+  onUp(state);
+}
+
+export function changeGraphStep(value) {
+  state.graphStep = value;
+  onUp(state);
+}
