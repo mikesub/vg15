@@ -1,5 +1,9 @@
-import data from '../data/vg15.json';
+import _data from '../data/vg15.json';
+import categories from '../data/categories.json';
 var onUp = null;
+
+const whiteList = Object.values(categories).reduce((prev, i) => (prev.concat(i)), []);
+const data = _data.filter(i => whiteList.includes(i.category));
 
 export const state = {
   selectedNumber: undefined,
