@@ -11,8 +11,7 @@ export default class extends React.Component {
 
     const sex = this.props.selectedNumber.category.substring(0,1);
     const data = this.props.data.filter(i => i.category.substring(0,1) === sex);
-    const dataPos = data.filter((i) => (i.ms < this.props.selectedNumber.ms)).length;
-    const title = `Same Sex (${sex} ${dataPos}/${data.length})`;
+    const title = `Same Sex (${sex} ${this.props.selectedNumber.sexPos}/${data.length})`;
     return (
           <BaseGraph
               title={title}

@@ -9,7 +9,7 @@ export default class extends React.Component {
 
     let title = '';
     if (this.props.selectedNumber) {
-      title = `Total (${this.props.data.filter((i) => (i.ms < this.props.selectedNumber.ms)).length}/${this.props.data.length})`;
+      title = `Total (${this.props.selectedNumber.absPos}/${this.props.data.length})`;
     } else {
       title = `Total (${this.props.data.length})`;
     }

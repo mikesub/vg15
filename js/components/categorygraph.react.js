@@ -11,8 +11,7 @@ export default class extends React.Component {
 
     const category = this.props.selectedNumber.category;
     const data = this.props.data.filter(i => i.category === category);
-    const dataPos = data.filter((i) => (i.ms < this.props.selectedNumber.ms)).length;
-    const title = `Category (${category} ${dataPos}/${data.length})`;
+    const title = `Category (${category} ${this.props.selectedNumber.categoryPos}/${data.length})`;
 
     return (
           <BaseGraph

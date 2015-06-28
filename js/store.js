@@ -6,8 +6,7 @@ import moment from 'moment';
 
 const whiteList = Object.values(categories).reduce((prev, i) => (prev.concat(i)), []);
 const data = _data
-    .filter(i => whiteList.includes(i.category))
-    .map(i => Object.assign(i, {ms: moment.duration(i.time+'0').asMilliseconds()}));
+    .filter(i => whiteList.includes(i.category));
 
 export const state = {
   selectedNumber: undefined,
@@ -20,7 +19,22 @@ export function registerCallback(cb){
 }
 
 export function selectNumber(number) {
-  state.selectedNumber = data.filter((i) => Number(i.number) === number)[0];
+  state.selectedNumber = data.filter((i) => i.number === number)[0];
+
+  state.selectedNumber.absPos = data
+    .filter((i) => (i.time < state.selectedNumber.time))
+    .length;
+
+  state.selectedNumber.categoryPos = data
+    .filter(i => i.category === state.selectedNumber.category && i.time < state.selectedNumber.time)
+    .length;
+
+  const sex = state.selectedNumber.category.substring(0,1);
+  state.selectedNumber.sexPos = data
+    .filter(i => i.category.substring(0,1) === sex && i.time < state.selectedNumber.time)
+    .length;
+
+
   onUp(state);
 }
 

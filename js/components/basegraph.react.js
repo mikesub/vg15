@@ -16,21 +16,21 @@ export default class extends React.Component {
     const data = this.props.data;
     const graphStep = this.props.graphStep*1000;
 
-    const maxTime = data.reduce((prev, i) => (prev > i.ms ? prev : i.ms), -Infinity);
-    const minTime = data.reduce((prev, i) => (prev < i.ms ? prev : i.ms), Infinity);
+    const maxTime = data.reduce((prev, i) => (prev > i.time ? prev : i.time), -Infinity);
+    const minTime = data.reduce((prev, i) => (prev < i.time ? prev : i.time), Infinity);
 
     for (let x = Math.ceil(minTime / graphStep) * graphStep; x < maxTime + graphStep; x = x + graphStep) {
 
-      let dataSubSet = data.filter((i) => (i.ms >= (x - graphStep) && i.ms < x));
+      let dataSubSet = data.filter((i) => (i.time >= (x - graphStep) && i.time < x));
 
       let highlighted = false;
       if (selectedNumber) {
-        highlighted = selectedNumber.ms >= (x - graphStep) && selectedNumber.ms < x;
+        highlighted = selectedNumber.time >= (x - graphStep) && selectedNumber.time < x;
       }
 
       let position = null;
       if (highlighted && selectedNumber && dataSubSet.filter(i => i.number === selectedNumber.number).length) {
-        position = dataSubSet.filter((i) => (i.ms < selectedNumber.ms)).length;
+        position = dataSubSet.filter((i) => (i.time < selectedNumber.time)).length;
       }
 
       bars.push(

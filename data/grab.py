@@ -18,16 +18,13 @@ url = 'http://data.3sport.org/vg-2015/events/426/results?page={}'
 results = []
 
 for i in range(39):
+    print(i)
     page = html.fromstring(requests.get(url.format(i)).text)
     rows = page.xpath('//section[@id="meet-results"]//tbody/tr')
     for row in rows:
 
-        places = row.xpath('td[1][@class="text-center"]/text()')[0]
-
-        if 'DN' in places:
+        if 'DN' in row.xpath('td[1][@class="text-center"]/text()')[0]:
             continue
-
-        _abs, sex, cat = map(str.strip, places.split('/'))
 
         category = ''
         try:
@@ -35,20 +32,17 @@ for i in range(39):
         except:
             pass
 
-        time_str = row.xpath('td[@class="result"]/text()')[0]
-        h, m, s = time_str.split(':')
-        time_secs = int(h)*60*60 + int(m)*60 + math.floor(float(s))
+        h, m, s = row.xpath('td[@class="result"]/text()')[0].split(':')
+        _time = int((int(h)*60*60 + int(m)*60 + float(s))*1000)
 
         results.append(dict(
             name=row.xpath('td[@class="name"]/a/text()')[0],
-            number=row.xpath('td/span[@class="badge"]/text()')[0],
-            time=time_str,
-            time_secs=time_secs,
+            number=int(row.xpath('td/span[@class="badge"]/text()')[0]),
+            time=_time,
             category=category,
-            abs=_abs,
-            sex=sex,
-            cat=cat,
         ))
 
 with open(DATA_PATH, 'w') as f:
     json.dump(results, f, ensure_ascii=False)
+
+
