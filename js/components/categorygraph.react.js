@@ -11,16 +11,16 @@ export default class extends React.Component {
 
     const category = this.props.selectedNumber.category;
     const data = this.props.data.filter(i => i.category === category);
+    const dataPos = data.filter((i) => (i.ms < this.props.selectedNumber.ms)).length;
+    const title = `Category (${category} ${dataPos}/${data.length})`;
 
     return (
-        <div>
-          <h2>Category ({category})</h2>
           <BaseGraph
+              title={title}
               selectedNumber={this.props.selectedNumber}
               data={data}
               graphStep={this.props.graphStep}
               />
-        </div>
     );
   }
 }

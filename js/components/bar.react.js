@@ -10,12 +10,14 @@ export default class extends React.Component {
       'highlighted': this.props.highlighted
     });
 
+    const title = this.props.position ? `${this.props.position}/${this.props.count}`: this.props.count;
+
     return (
       <div className="bar">
         <div className="bar-title">&lt;{this.props.title}</div>
         <div className={cs} style={{width: this.props.count}}>
           <div className="bar-bar-title" style={{left: this.props.count+5}}>
-            {this.props.count}
+            {title}
           </div>
         </div>
       </div>

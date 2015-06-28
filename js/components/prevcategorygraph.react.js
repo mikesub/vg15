@@ -27,14 +27,12 @@ export default class extends React.Component {
     const data = this.props.data.filter(i => i.category === category);
 
     return (
-        <div>
-          <h2>Prev Category {category}</h2>
-          <BaseGraph
-              selectedNumber={this.props.selectedNumber}
-              data={data}
-              graphStep={this.props.graphStep}
-              />
-        </div>
+        <BaseGraph
+            title={`Prev Category ${category}`}
+            selectedNumber={this.props.selectedNumber}
+            data={data}
+            graphStep={this.props.graphStep}
+            />
     );
   }
 }
