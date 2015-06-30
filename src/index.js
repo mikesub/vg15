@@ -1,6 +1,8 @@
 import React from 'react';
 import 'babel-core/polyfill';
-import Root from './components/root.react.js';
+import Root from './root.js';
+
+import './index.css';
 
 window.document.addEventListener('DOMContentLoaded', function(){
   var node = window.document.createElement('div');

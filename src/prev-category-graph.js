@@ -1,8 +1,8 @@
 import React from 'react';
 
-import BaseGraph from './baseGraph.react.js';
+import BaseGraph from './base-graph.js';
 
-import categories from '../../data/categories.json';
+import categories from '../data/categories.json';
 
 export default class extends React.Component {
 

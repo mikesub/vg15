@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-import Bar from './bar.react.js';
+import Bar from './bar.js';
 
 const humanize = function (x) {
   var t = moment.duration(x);

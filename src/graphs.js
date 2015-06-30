@@ -1,13 +1,13 @@
 import React from 'react';
 
-import TotalGraph from './totalGraph.react.js';
-import SameSexGraph from './sameSexGraph.react.js';
-import OppositeSexGraph from './oppositeSexGraph.react.js';
-import CategoryGraph from './categoryGraph.react.js';
-import PrevCategoryGraph from './prevCategoryGraph.react.js';
-import NextCategoryGraph from './nextCategoryGraph.react.js';
+import TotalGraph from './total-graph.js';
+import SameSexGraph from './same-sex-graph.js';
+import OppositeSexGraph from './opposite-sex-graph.js';
+import CategoryGraph from './category-graph.js';
+import PrevCategoryGraph from './prev-category-graph.js';
+import NextCategoryGraph from './next-category-graph.js';
 
-export default class extends React.Component {
+export default class Graphs extends React.Component {
   render() {
     return (
       <div>

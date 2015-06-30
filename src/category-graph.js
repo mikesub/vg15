@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BaseGraph from './baseGraph.react.js';
+import BaseGraph from './base-graph.js';
 
 export default class extends React.Component {
 
@@ -9,9 +9,10 @@ export default class extends React.Component {
       return null;
     }
 
-    const sex = this.props.selectedNumber.category.substring(0,1);
-    const data = this.props.data.filter(i => i.category.substring(0,1) === sex);
-    const title = `Same Sex (${sex} ${this.props.selectedNumber.sexPos}/${data.length})`;
+    const category = this.props.selectedNumber.category;
+    const data = this.props.data.filter(i => i.category === category);
+    const title = `Category (${category} ${this.props.selectedNumber.categoryPos}/${data.length})`;
+
     return (
           <BaseGraph
               title={title}

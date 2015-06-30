@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BaseGraph from './baseGraph.react.js';
+import BaseGraph from './base-graph.js';
 
 export default class extends React.Component {
 

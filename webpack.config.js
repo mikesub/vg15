@@ -1,21 +1,32 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: './js/main.js',
+    entry: [
+      './src/index.js'
+    ],
     output: {
         path: 'build',
-        filename: 'bundle.js'
+        filename: 'index.js'
     },
     module: {
         loaders: [
-            { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
-            { test: /\.js$/, loader: 'babel?optional[]=runtime&stage=0', exclude: /node_modules/ },
+            { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]-[local]!cssnext') },
+            { test: /\.js$/, loader: 'babel?stage=0', exclude: /node_modules/ },
             { test: /\.json$/, loaders: ['json'] }
         ]
     },
+    cssnext: {
+      browsers: "last 2 versions"
+    },
     plugins: [
-        new HtmlWebpackPlugin({title:'vg15'}),
-        new ExtractTextPlugin('css.css')
+        new ExtractTextPlugin('styles.css'),
+        new webpack.NoErrorsPlugin(),
+        new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+        new HtmlWebpackPlugin({
+          title: 'Весенний Гром - 2015',
+          hash: true
+        })
     ]
 };

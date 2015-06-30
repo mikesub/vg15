@@ -1,26 +1,3 @@
-body {
-  margin: 0;
-}
-
-.root {
-  margin: 2rem;
-  margin-top: 1rem;
-  font-family: monospace;
-}
-
-button {
-  width: 6em;
-}
-
-button.active {
-  font-weight: bold;
-}
-
-button.highlighted {
-  box-shadow: inset 0px 0px 5px 0px greenyellow;
-}
-
-
 .bar {
   margin-bottom: 5px;
   font-family: monospace;

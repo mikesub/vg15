@@ -1,0 +1,29 @@
+.wrap {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  font-size: 16px;
+  line-height: 32px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-family: 'Arial';
+  border: 1px solid #ccc;
+}
+
+.input:focus {
+  outline: none;
+  border-color: black;
+}
+
+.name {
+  position: absolute;
+  top: 1px;
+  right: 10px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 16px;
+  color: #999;
+  font-family: monospace;
+}
