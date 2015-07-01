@@ -14,7 +14,7 @@ export default class Input extends React.Component {
     return (
       <div className={css.wrap}>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <input className={css.input} type="text" defaultValue={this.props.number.number} placeholder="номер участника" pattern="\d+" ref="number"/>
+          <input className={css.input} type="text" defaultValue={this.props.number ? this.props.number.number : null} placeholder="номер участника" pattern="\d+" ref="number"/>
           <div className={css.name}>
             {this.props.number ? this.props.number.name : null}
           </div>
