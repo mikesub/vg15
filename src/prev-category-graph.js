@@ -28,7 +28,7 @@ export default class extends React.Component {
 
     return (
         <BaseGraph
-            title={`Prev Category ${category}`}
+            title={`Предыдущая категория: ${category}`}
             selectedNumber={this.props.selectedNumber}
             data={data}
             graphStep={this.props.graphStep}

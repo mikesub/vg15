@@ -21,6 +21,12 @@ export function registerCallback(cb){
 export function selectNumber(number) {
   state.selectedNumber = data.filter((i) => i.number === number)[0];
 
+  if (!state.selectedNumber) {
+    return;
+  }
+
+  window.history.pushState({}, '', state.selectedNumber.number);
+
   state.selectedNumber.absPos = data
     .filter((i) => (i.time < state.selectedNumber.time))
     .length;
@@ -35,10 +41,12 @@ export function selectNumber(number) {
     .length;
 
 
-  onUp(state);
+  onUp && onUp(state);
 }
 
 export function changeGraphStep(value) {
   state.graphStep = value;
   onUp(state);
 }
+
+selectNumber(Number(window.location.pathname.substr(1)));

@@ -13,7 +13,7 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]-[local]!cssnext') },
-            { test: /\.js$/, loader: 'babel?stage=0', exclude: /node_modules/ },
+            { test: /\.js$/, loaders: ['babel?stage=0'], exclude: /node_modules/ },
             { test: /\.json$/, loaders: ['json'] }
         ]
     },

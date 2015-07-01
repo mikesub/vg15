@@ -5,10 +5,16 @@ import Bar from './bar.js';
 
 const humanize = function (x) {
   var t = moment.duration(x);
-  return t.hours() + 'h' + t.minutes() + 'm';
+  return t.hours() + 'ч' + t.minutes();
 };
 
-export default class extends React.Component {
+const getWidthPercentage = function (barsNumber, marginPart) {
+  return 1/(barsNumber + barsNumber * marginPart - marginPart)*100;
+};
+
+import css from './bar.css';
+
+export default class BaseGraph extends React.Component {
 
   render() {
     var bars = [];
@@ -33,16 +39,38 @@ export default class extends React.Component {
         position = dataSubSet.filter((i) => (i.time < selectedNumber.time)).length;
       }
 
-      bars.push(
-          <Bar position={position} key={x} title={humanize(x)} count={dataSubSet.length} highlighted={highlighted}/>
-      );
+      bars.push({
+        key: x,
+        title: humanize(x-graphStep),
+        highlighted: highlighted,
+        position: position,
+        count: dataSubSet.length
+      });
 
     }
 
-    return (<div>
-      <h2>{this.props.title}</h2>
-      {bars}
-    </div>);
+    const maxCount = bars.reduce((prev, i) => (prev > i.count ? prev : i.count), -Infinity);
+
+    bars = bars.map(i => Object.assign(i, { height: i.count / maxCount * 100}));
+
+    const marginPart = 0.1;
+    const width = getWidthPercentage(bars.length, marginPart);
+    const margin = width * marginPart;
+
+    return (
+      <div className={css.wrap}>
+        <div className={css.title}>{this.props.title}</div>
+        {bars.map((v, i, a) => (<Bar
+                            key={v.key}
+                            title={v.title}
+                            highlighted={v.highlighted}
+                            height={v.height}
+                            width={width}
+                            margin={a.length - 1 === i ? 0 : margin}
+                            position={v.position}
+                            count={v.count}
+                          />))}
+      </div>
+    );
   }
 }
-

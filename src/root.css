@@ -1,3 +1,22 @@
+* {
+  font-family: Helvetica, Arial, sans-serif;
+  background: white;
+  box-sizing: border-box;
+}
+
 .wrap {
-  margin: 20px;
+  margin: 16px;
+  padding-top: 100px;
+}
+
+.sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: white;
+  z-index: 100;
+  border-bottom: 1px solid #eee;
+  padding: 16px 16px 0 16px;
+  margin: 0 -16px 0 -16px;
+  box-sizing: border-box;
 }

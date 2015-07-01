@@ -2,25 +2,27 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-export default class extends React.Component {
+import css from './bar.css';
+
+export default class Bar extends React.Component {
   render() {
 
     var cs = classNames({
-      'bar-bar': true,
-      'highlighted': this.props.highlighted
+      [css.bar] : true,
+      [css.highlighted]: this.props.highlighted && this.props.position,
+      [css.virtual]: this.props.highlighted && !this.props.position,
     });
 
-    const title = this.props.position ? `${this.props.position}/${this.props.count}`: this.props.count;
+    const info = this.props.position ? `${this.props.position}/${this.props.count}`: this.props.count;
+
+    const styles = {
+      height: this.props.height+'%',
+      width: this.props.width+'%',
+      marginRight: this.props.margin+'%'
+    };
 
     return (
-      <div className="bar">
-        <div className="bar-title">&lt;{this.props.title}</div>
-        <div className={cs} style={{width: this.props.count}}>
-          <div className="bar-bar-title" style={{left: this.props.count+5}}>
-            {title}
-          </div>
-        </div>
-      </div>
+      <div style={styles} className={cs} data-title={this.props.title} data-info={info}/>
     );
   }
 }

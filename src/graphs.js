@@ -7,40 +7,24 @@ import CategoryGraph from './category-graph.js';
 import PrevCategoryGraph from './prev-category-graph.js';
 import NextCategoryGraph from './next-category-graph.js';
 
+
 export default class Graphs extends React.Component {
   render() {
+
+    const props = {
+      selectedNumber: this.props.selectedNumber,
+      data: this.props.data,
+      graphStep: this.props.graphStep,
+    };
+
     return (
       <div>
-        <TotalGraph
-          selectedNumber={this.props.selectedNumber}
-          data={this.props.data}
-          graphStep={this.props.graphStep}
-        />
-        <SameSexGraph
-          selectedNumber={this.props.selectedNumber}
-          data={this.props.data}
-          graphStep={this.props.graphStep}
-        />
-        <OppositeSexGraph
-          selectedNumber={this.props.selectedNumber}
-          data={this.props.data}
-          graphStep={this.props.graphStep}
-        />
-        <CategoryGraph
-          selectedNumber={this.props.selectedNumber}
-          data={this.props.data}
-          graphStep={this.props.graphStep}
-        />
-        <PrevCategoryGraph
-          selectedNumber={this.props.selectedNumber}
-          data={this.props.data}
-          graphStep={this.props.graphStep}
-        />
-        <NextCategoryGraph
-          selectedNumber={this.props.selectedNumber}
-          data={this.props.data}
-          graphStep={this.props.graphStep}
-        />
+        <TotalGraph {...props}/>
+        <SameSexGraph {...props}/>
+        <OppositeSexGraph {...props}/>
+        <CategoryGraph {...props}/>
+        <PrevCategoryGraph {...props}/>
+        <NextCategoryGraph {...props}/>
       </div>
     )
   }

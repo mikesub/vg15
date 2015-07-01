@@ -3,15 +3,15 @@ import moment from 'moment';
 
 import BaseGraph from './base-graph.js';
 
-export default class extends React.Component {
+export default class TotalGraph extends React.Component {
 
   render() {
 
     let title = '';
     if (this.props.selectedNumber) {
-      title = `Total (${this.props.selectedNumber.absPos}/${this.props.data.length})`;
+      title = `Все: ${this.props.selectedNumber.absPos}/${this.props.data.length}`;
     } else {
-      title = `Total (${this.props.data.length})`;
+      title = `Все: ${this.props.data.length}`;
     }
 
     return (
