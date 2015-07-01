@@ -25,7 +25,7 @@ export function selectNumber(number) {
     return;
   }
 
-  window.history.pushState({}, '', state.selectedNumber.number);
+  window.location.hash = state.selectedNumber.number;
 
   state.selectedNumber.absPos = data
     .filter((i) => (i.time < state.selectedNumber.time))
@@ -49,4 +49,4 @@ export function changeGraphStep(value) {
   onUp(state);
 }
 
-selectNumber(Number(window.location.pathname.substr(1)));
+selectNumber(Number(window.location.hash.substr(1)));
