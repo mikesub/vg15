@@ -19,6 +19,11 @@ export function registerCallback(cb){
 }
 
 export function selectNumber(number) {
+
+  if (number === 0) {
+    return;
+  }
+
   state.selectedNumber = data.filter((i) => i.number === number)[0];
 
   if (!state.selectedNumber) {
