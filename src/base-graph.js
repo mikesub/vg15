@@ -41,7 +41,7 @@ export default class BaseGraph extends React.Component {
 
       bars.push({
         key: x,
-        title: humanize(x-graphStep),
+        title: humanize(x),
         highlighted: highlighted,
         position: position,
         count: dataSubSet.length
