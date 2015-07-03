@@ -1,9 +1,4 @@
-.wrap {
-  margin-bottom: 16px;
-  border-radius: 1px;
-  font-feature-settings: normal;
-}
-
 .slider {
-  width: 100%;
+  width: 200px;
+  margin: 0 0 10px 0;
 }

@@ -18,7 +18,7 @@ export default class Graphs extends React.Component {
     };
 
     return (
-      <div>
+      <div style={{marginLeft: 220}}>
         <TotalGraph {...props}/>
         <SameSexGraph {...props}/>
         <OppositeSexGraph {...props}/>

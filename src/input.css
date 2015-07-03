@@ -1,14 +1,8 @@
-.wrap {
-  position: relative;
-  margin-bottom: 16px;
-}
-
 .input {
-  width: 100%;
-  font-size: 16px;
-  line-height: 32px;
-  padding: 0 10px;
-  box-sizing: border-box;
+  width: 200px;
+  font-size: 20px;
+  line-height: 35px;
+  padding: 0 8px;
   border: 1px solid #ccc;
   border-radius: 2px;
 }
@@ -19,10 +13,6 @@
 }
 
 .name {
-  position: absolute;
-  top: 1px;
-  right: 10px;
-  height: 32px;
   line-height: 32px;
   font-size: 16px;
   color: #999;

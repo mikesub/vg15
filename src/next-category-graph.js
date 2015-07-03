@@ -16,7 +16,7 @@ export default class extends React.Component {
     const sex = this.props.selectedNumber.category.substring(0,1);
     if (sex === 'M') {
       category = categories.male[categories.male.indexOf(_category)+1];
-    } else {
+    } else if (sex === 'F') {
       category = categories.female[categories.female.indexOf(_category)+1];
     }
 
@@ -28,7 +28,7 @@ export default class extends React.Component {
 
     return (
           <BaseGraph
-              title={`Следующая категория: ${category}`}
+              title={`Следующая категория (${category})`}
               selectedNumber={this.props.selectedNumber}
               data={data}
               graphStep={this.props.graphStep}

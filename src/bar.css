@@ -5,14 +5,12 @@
   white-space: nowrap;
   padding: 50px 8px;
   position: relative;
-  border-radius: 2px;
-  border: 1px solid #cccccc;
   margin-bottom: 16px;
 }
 
 .bar {
   display: inline-block;
-  background: deepskyblue;
+  background: lightskyblue;
   border-radius: 4px 4px 2px 2px;
   position: relative;
 }
@@ -46,9 +44,9 @@
 }
 
 .highlighted {
-  background: dodgerblue;
+  background: deepskyblue;
 }
 
 .virtual {
-  background: cornflowerblue;
+  background: darkgrey;
 }

@@ -20,9 +20,10 @@ export default class Root extends React.Component {
   render() {
     return (
       <div className={css.wrap}>
-        <div className={css.sticky}>
-          <Input number={this.state.selectedNumber}/>
+        <div className={css.aside}>
           <GraphStep value={this.state.graphStep}/>
+          <Input number={this.state.selectedNumber}/>
+          <Details number={this.state.selectedNumber} total={this.state.data.length} />
         </div>
         <Graphs selectedNumber={this.state.selectedNumber} data={this.state.data} graphStep={this.state.graphStep}/>
       </div>

@@ -12,11 +12,16 @@ export default class extends React.Component {
     }
 
     const sex = this.props.selectedNumber.category.substring(0,1);
+
+    if (!['M','F'].includes(sex)) {
+      return null;
+    }
+
     const data = this.props.data.filter(i => i.category.substring(0,1) === sex);
-    const title = `${sexTrl[sex]}: ${this.props.selectedNumber.sexPos}/${data.length}`;
+
     return (
           <BaseGraph
-              title={title}
+              title={sexTrl[sex]}
               selectedNumber={this.props.selectedNumber}
               data={data}
               graphStep={this.props.graphStep}
