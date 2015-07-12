@@ -9,8 +9,8 @@ export default class Details extends React.Component {
   render() {
 
     const link = (<div className={details.disclaimer}>
-      Все данные взяты из официальной таблицы результатов на <a target="_blank" href="https://3sport.org/">3sport.org</a>.
-      Номер можно посмотреть <a target="_blank" href="https://data.3sport.org/vg-2015/events/426/results">там же</a>.
+      Все данные взяты из&nbsp;официальной таблицы результатов на&nbsp;<a target="_blank" href="https://3sport.org/">3sport.org</a>.
+      Номер можно посмотреть <a target="_blank" href="https://data.3sport.org/vg-2015/events/426/results">там&nbsp;же</a>.
     </div>);
 
     if (!this.props.number) {
