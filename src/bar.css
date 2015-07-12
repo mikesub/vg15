@@ -26,12 +26,12 @@
 
 .bar:before {
   content: attr(data-info);
-  top: -16px;
+  top: -20px;
 }
 
 .bar:after {
   content: attr(data-title);
-  bottom: -16px;
+  bottom: -20px;
 }
 
 .title {
@@ -42,12 +42,13 @@
 }
 
 .virtual, .highlighted {
-  box-shadow: 0 0 2px 1px black;
+  box-shadow: 0 0 5px 2px black;
 }
 
 .highlighted.bar:after,
 .highlighted.bar:before
 {
   color: #000;
+  font-weight: 500;
 }
 
