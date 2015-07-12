@@ -4,6 +4,8 @@ import moment from 'moment';
 import Bar from './bar.js';
 import {heatmap} from './heatmap.js';
 
+import {minTime, maxTime} from './store.js';
+
 const humanize = function (x) {
   var t = moment.duration(x);
   return t.hours() + 'ч' + t.minutes();
@@ -23,12 +25,13 @@ export default class BaseGraph extends React.Component {
     const data = this.props.data;
     const graphStep = this.props.graphStep*1000;
 
-    const maxTime = data.reduce((prev, i) => (prev > i.time ? prev : i.time), -Infinity);
-    const minTime = data.reduce((prev, i) => (prev < i.time ? prev : i.time), Infinity);
+    //const maxTime = data.reduce((prev, i) => (prev > i.time ? prev : i.time), -Infinity);
+    //const minTime = data.reduce((prev, i) => (prev < i.time ? prev : i.time), Infinity);
 
     for (let x = Math.ceil(minTime / graphStep) * graphStep; x < maxTime + graphStep; x = x + graphStep) {
 
       let dataSubSet = data.filter((i) => (i.time >= (x - graphStep) && i.time < x));
+
 
       let highlighted = false;
       if (selectedNumber) {
@@ -59,6 +62,8 @@ export default class BaseGraph extends React.Component {
     const margin = width * marginPart;
 
     const centerIndex = bars.map((v, i) => [i, v.count]).filter((i) => i[1] === maxCount)[0][0];
+
+
     const colors = heatmap(bars.length, centerIndex);
 
     return (

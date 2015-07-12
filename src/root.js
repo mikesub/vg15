@@ -4,7 +4,7 @@ import { state, registerCallback } from './store.js';
 
 import Input from './input.js';
 import Details from './details.js';
-import GraphStep from './graph-step.js';
+//import GraphStep from './graph-step.js';
 import Graphs from './graphs.js';
 
 import css from './root.css';
@@ -21,7 +21,10 @@ export default class Root extends React.Component {
     return (
       <div className={css.wrap}>
         <div className={css.aside}>
-          <GraphStep value={this.state.graphStep}/>
+          <div className={css.header}>
+            Весенний гром 2015
+          </div>
+          {/* <GraphStep value={this.state.graphStep}/> */}
           <Input number={this.state.selectedNumber}/>
           <Details number={this.state.selectedNumber} total={this.state.data.length} />
         </div>

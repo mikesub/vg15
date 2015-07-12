@@ -23,8 +23,8 @@ export default class Details extends React.Component {
       ['Абсолют', `${this.props.number.absPos}/${this.props.total}`],
       ['В категории', `${this.props.number.categoryPos}/${this.props.number.categoryTotal}`],
       ['Среди пола', `${this.props.number.sexPos}/${this.props.number.sexTotal}`],
-      ['Время следующего', humanTime(this.props.number.nextTime)],
-      ['Время предыдущего', humanTime(this.props.number.prevTime)],
+      ['Время пред. финишера', humanTime(this.props.number.prevTime)],
+      ['Время след. финишера', humanTime(this.props.number.nextTime)],
     ];
 
     return (

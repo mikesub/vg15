@@ -24,3 +24,10 @@ a {
 .main {
   margin-left: 220px;
 }
+
+
+.header {
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 20px;
+}
