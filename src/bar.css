@@ -12,7 +12,7 @@
   display: inline-block;
   border-radius: 4px 4px 2px 2px;
   position: relative;
-
+  min-width: 25px;
 }
 
 .bar:before, .bar:after {
@@ -31,7 +31,8 @@
 
 .bar:after {
   content: attr(data-title);
-  bottom: -20px;
+  bottom: -25px;
+  transform: rotateZ(45deg);
 }
 
 .title {

@@ -3,6 +3,7 @@ import React from 'react';
 import BaseGraph from './base-graph.js';
 
 import categories from '../data/categories.json';
+import {humanCat} from './utils.js';
 
 export default class extends React.Component {
 
@@ -28,7 +29,7 @@ export default class extends React.Component {
 
     return (
         <BaseGraph
-            title={`Предыдущая категория (${category})`}
+            title={`Предыдущая категория (${humanCat(category)})`}
             selectedNumber={this.props.selectedNumber}
             data={data}
             graphStep={this.props.graphStep}

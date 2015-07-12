@@ -40,9 +40,9 @@ export function selectNumber(number) {
   onUp && onUp(state);
 }
 
-//export function changeGraphStep(value) {
-  //state.graphStep = value;
-  //onUp(state);
-//}
+export function changeGraphStep(value) {
+  state.graphStep = value;
+  onUp(state);
+}
 
 selectNumber(Number(window.location.hash.substr(1)));

@@ -4,6 +4,8 @@ import BaseGraph from './base-graph.js';
 
 import categories from '../data/categories.json';
 
+import {humanCat} from './utils.js';
+
 const whiteList = Object.values(categories).reduce((prev, i) => (prev.concat(i)), []);
 
 export default class extends React.Component {
@@ -23,7 +25,7 @@ export default class extends React.Component {
 
     return (
           <BaseGraph
-              title={category}
+              title={humanCat(category)}
               selectedNumber={this.props.selectedNumber}
               data={data}
               graphStep={this.props.graphStep}
