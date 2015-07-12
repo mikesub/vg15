@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import Bar from './bar.js';
+import {heatmap} from './heatmap.js';
 
 const humanize = function (x) {
   var t = moment.duration(x);
@@ -57,6 +58,9 @@ export default class BaseGraph extends React.Component {
     const width = getWidthPercentage(bars.length, marginPart);
     const margin = width * marginPart;
 
+    const centerIndex = bars.map((v, i) => [i, v.count]).filter((i) => i[1] === maxCount)[0][0];
+    const colors = heatmap(bars.length, centerIndex);
+
     return (
       <div className={css.wrap}>
         <div className={css.title}>{this.props.title}</div>
@@ -69,6 +73,8 @@ export default class BaseGraph extends React.Component {
                             margin={a.length - 1 === i ? 0 : margin}
                             position={v.position}
                             count={v.count}
+                            color={colors[i]}
+                            zIndex={bars.length - i + 1}
                           />))}
       </div>
     );

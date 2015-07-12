@@ -7,7 +7,6 @@ import CategoryGraph from './category-graph.js';
 import PrevCategoryGraph from './prev-category-graph.js';
 import NextCategoryGraph from './next-category-graph.js';
 
-
 export default class Graphs extends React.Component {
   render() {
 
@@ -18,7 +17,7 @@ export default class Graphs extends React.Component {
     };
 
     return (
-      <div style={{marginLeft: 220}}>
+      <div>
         <TotalGraph {...props}/>
         <SameSexGraph {...props}/>
         <OppositeSexGraph {...props}/>

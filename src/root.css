@@ -1,7 +1,9 @@
-* {
-  font-family: Helvetica, Arial, sans-serif;
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: white;
   box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 a {
@@ -11,10 +13,14 @@ a {
 
 .wrap {
   margin: 16px;
-  /*padding-top: 100px;*/
 }
 
 .aside {
+  width: 200px;
   position: fixed;
-  top: 16px;
+}
+
+
+.main {
+  margin-left: 220px;
 }

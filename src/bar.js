@@ -18,7 +18,9 @@ export default class Bar extends React.Component {
     const styles = {
       height: this.props.height+'%',
       width: this.props.width+'%',
-      marginRight: this.props.margin+'%'
+      marginRight: this.props.margin+'%',
+      backgroundColor: this.props.color,
+      zIndex: this.props.zIndex,
     };
 
     return (

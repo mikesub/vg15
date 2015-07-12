@@ -24,6 +24,9 @@ export function selectNumber(number) {
     x.categoryTotal = data.filter(i => i.category === x.category).length;
     x.sexPos = data.filter(i => i.category.substring(0, 1) === x.category.substring(0, 1) && i.time < x.time).length + 1;
     x.sexTotal = x.category.substring(0, 1) === 'M' ? mCount : fCount;
+    x.nextTime = data[(x.absPos-1)-1] && data[(x.absPos-1)-1].time;
+    x.prevTime = data[(x.absPos-1)+1] && data[(x.absPos-1)+1].time;
+
     state.selectedNumber = x;
     window.location.hash = x.number;
   } else {
@@ -40,5 +43,3 @@ export function changeGraphStep(value) {
 }
 
 selectNumber(Number(window.location.hash.substr(1)));
-
-// 5044, 1986, 1982

@@ -1,8 +1,23 @@
-.block {
+.wrap {
   margin: 10px;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .item {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+}
+
+.value {
+  margin-bottom: 10px;
+}
+
+.disclaimer {
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.disclaimer a {
+  font-weight: 400;
+  color: black;
 }

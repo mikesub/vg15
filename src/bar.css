@@ -10,43 +10,44 @@
 
 .bar {
   display: inline-block;
-  background: lightskyblue;
   border-radius: 4px 4px 2px 2px;
   position: relative;
+
+}
+
+.bar:before, .bar:after {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  font-weight: 300;
 }
 
 .bar:before {
   content: attr(data-info);
-  position: absolute;
-  top: -1.2rem;
-  width: 100%;
-  text-align: center;
-  color: #999;
-  font-size: .8rem;
-  font-family: Verdana, sans-serif;
+  top: -16px;
 }
 
 .bar:after {
   content: attr(data-title);
-  position: absolute;
-  bottom: -1.2rem;
-  width: 100%;
-  text-align: center;
-  color: #999;
-  font-size: .8rem;
-  font-family: Verdana, sans-serif;
+  bottom: -16px;
 }
 
 .title {
   position: absolute;
   top: 8px;
   left: 10px;
+  font-weight: normal;
 }
 
-.highlighted {
-  background: deepskyblue;
+.virtual, .highlighted {
+  box-shadow: 0 0 2px 1px black;
 }
 
-.virtual {
-  background: darkgrey;
+.highlighted.bar:after,
+.highlighted.bar:before
+{
+  color: #000;
 }
+

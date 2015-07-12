@@ -1,37 +1,41 @@
 import React from 'react';
-import moment from 'moment';
 
-import css from './details.css';
 
-function pad(num, digits) {
-  let str = num.toString();
-  while (str.length < digits) {
-    str = '0' + str;
-  }
-  return str;
-}
+import {humanCat, humanTime} from './utils';
+
+import details from './details.css';
 
 export default class Details extends React.Component {
   render() {
+
+    const link = (<div className={details.disclaimer}>
+      Все данные взяты из официальной таблицы результатов на <a target="_blank" href="https://3sport.org/">3sport.org</a>.
+      Номер можно посмотреть <a target="_blank" href="https://data.3sport.org/vg-2015/events/426/results">там же</a>.
+    </div>);
+
     if (!this.props.number) {
-      return (
-          <div className={css.block}>
-            <a href="https://data.3sport.org/vg-2015/events/426/results">забыли номер?</a>
-          </div>
-      );
+      return <div className={details.block}>{link}</div>;
     }
 
-    const d = moment.duration(this.props.number.time)
-    const humanTime = `${d.hours()}:${pad(d.minutes(),2)}:${pad(d.seconds(),2)}.${d.milliseconds()}`;
+    const arr = [
+      [this.props.number.name, humanCat(this.props.number.category)],
+      ['Время', humanTime(this.props.number.time)],
+      ['Абсолют', `${this.props.number.absPos}/${this.props.total}`],
+      ['В категории', `${this.props.number.categoryPos}/${this.props.number.categoryTotal}`],
+      ['Среди пола', `${this.props.number.sexPos}/${this.props.number.sexTotal}`],
+      ['Время следующего', humanTime(this.props.number.nextTime)],
+      ['Время предыдущего', humanTime(this.props.number.prevTime)],
+    ];
 
     return (
-        <div className={css.block}>
-          <div className={css.item}>{this.props.number.name}</div>
-          <div className={css.item}>{humanTime}</div>
-          <div className={css.item}>{this.props.number.category}</div>
-          <div className={css.item}>Абс: {this.props.number.absPos}/{this.props.total}</div>
-          <div className={css.item}>Пол: {this.props.number.sexPos}/{this.props.number.sexTotal}</div>
-          <div className={css.item}>Кат: {this.props.number.categoryPos}/{this.props.number.categoryTotal}</div>
+        <div className={details.wrap}>
+          {arr.filter(i => i[1]).map(i => (
+            <div className={details.block} key={i[0]}>
+              <div className={details.item}>{i[0]}</div>
+              <div className={details.value}>{i[1]}</div>
+            </div>
+          ))}
+          {link}
         </div>
     );
   }

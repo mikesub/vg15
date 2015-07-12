@@ -25,7 +25,9 @@ export default class Root extends React.Component {
           <Input number={this.state.selectedNumber}/>
           <Details number={this.state.selectedNumber} total={this.state.data.length} />
         </div>
-        <Graphs selectedNumber={this.state.selectedNumber} data={this.state.data} graphStep={this.state.graphStep}/>
+        <div className={css.main}>
+          <Graphs selectedNumber={this.state.selectedNumber} data={this.state.data} graphStep={this.state.graphStep}/>
+        </div>
       </div>
     );
   }
