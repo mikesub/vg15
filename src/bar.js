@@ -9,8 +9,8 @@ export default class Bar extends React.Component {
 
     var cs = classNames({
       [css.bar] : true,
-      [css.highlighted]: this.props.highlighted && this.props.position === null,
-      [css.virtual]: this.props.highlighted && this.props.position !== null,
+      [css.highlighted]: this.props.highlighted && this.props.position !== null,
+      [css.virtual]: this.props.highlighted && this.props.position === null,
     });
 
     const info = (this.props.position !== null) ? `${this.props.position + 1}/${this.props.count}`: this.props.count;

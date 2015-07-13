@@ -35,7 +35,15 @@ function rgb(r, g, b){
 export function heatmap(total, centerIndex) {
   const blue = rgb(52, 152, 219);
   const red = rgb(231, 76, 60);
+
+  if (total < 5 ) {
+    return range(total).map(() => `rgb(${Math.floor(blue.r)},${Math.floor(blue.g)},${Math.floor(blue.b)})`);
+  }
+
   const objects = gradient(blue, red, centerIndex).concat(gradient(red, blue, total - centerIndex - 1).slice(1));
+
+
+
   return objects.map(i => `rgb(${Math.floor(i.r)},${Math.floor(i.g)},${Math.floor(i.b)})`);
 }
 

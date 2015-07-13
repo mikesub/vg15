@@ -19,11 +19,11 @@ export default class Graphs extends React.Component {
     return (
       <div>
         <TotalGraph {...props}/>
-        <SameSexGraph {...props}/>
-        <OppositeSexGraph {...props}/>
         <CategoryGraph {...props}/>
         <PrevCategoryGraph {...props}/>
         <NextCategoryGraph {...props}/>
+        <SameSexGraph {...props}/>
+        <OppositeSexGraph {...props}/>
       </div>
     )
   }
