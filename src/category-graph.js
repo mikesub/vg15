@@ -7,10 +7,6 @@ import {humanCat} from './utils.js';
 export default class extends React.Component {
 
   render() {
-    if (!this.props.selectedNumber) {
-      return null;
-    }
-
     const category = this.props.selectedNumber.category;
     const data = this.props.data.filter(i => i.category === category);
 

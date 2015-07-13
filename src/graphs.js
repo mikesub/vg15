@@ -8,6 +8,22 @@ import PrevCategoryGraph from './prev-category-graph.js';
 import NextCategoryGraph from './next-category-graph.js';
 
 export default class Graphs extends React.Component {
+
+  comparingGraphs(props) {
+    if (!this.props.selectedNumber) {
+      return null;
+    }
+    return (
+      <div>
+        <CategoryGraph {...props}/>
+        <PrevCategoryGraph {...props}/>
+        <NextCategoryGraph {...props}/>
+        <SameSexGraph {...props}/>
+        <OppositeSexGraph {...props}/>
+      </div>
+    );
+  }
+
   render() {
 
     const props = {
@@ -19,11 +35,7 @@ export default class Graphs extends React.Component {
     return (
       <div>
         <TotalGraph {...props}/>
-        <CategoryGraph {...props}/>
-        <PrevCategoryGraph {...props}/>
-        <NextCategoryGraph {...props}/>
-        <SameSexGraph {...props}/>
-        <OppositeSexGraph {...props}/>
+        {this.comparingGraphs(props)}
       </div>
     )
   }

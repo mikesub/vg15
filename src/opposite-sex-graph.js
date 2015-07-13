@@ -6,10 +6,6 @@ import {translations} from './utils.js';
 export default class extends React.Component {
 
   render() {
-    if (!this.props.selectedNumber) {
-      return null;
-    }
-
     const sex = this.props.selectedNumber.category.substring(0,1);
 
     if (!['M','F'].includes(sex)) {

@@ -8,10 +8,6 @@ import {humanCat} from './utils.js';
 export default class extends React.Component {
 
   render() {
-    if (!this.props.selectedNumber) {
-      return null;
-    }
-
     const currentCategory = this.props.selectedNumber.category;
     const sex = currentCategory.substring(0,1);
     const nextCategory = categories[categories.indexOf(currentCategory)+1];
