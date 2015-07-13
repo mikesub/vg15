@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-import {humanCat, humanTime} from './utils';
+import {humanCat, humanTime, translations} from './utils';
 
 import details from './details.css';
 
@@ -17,15 +16,23 @@ export default class Details extends React.Component {
       return <div className={details.block}>{link}</div>;
     }
 
-    const arr = [
+    let arr = [
       [this.props.number.name, humanCat(this.props.number.category)],
-      ['Время', humanTime(this.props.number.time)],
-      ['Абсолют', `${this.props.number.absPos}/${this.props.total}`],
-      ['В категории', `${this.props.number.categoryPos}/${this.props.number.categoryTotal}`],
-      ['Среди пола', `${this.props.number.sexPos}/${this.props.number.sexTotal}`],
-      ['Время пред. финишера', humanTime(this.props.number.prevTime)],
-      ['Время след. финишера', humanTime(this.props.number.nextTime)],
     ];
+    if (this.props.number['fail_reason'] !== null) {
+      arr = arr.concat([
+        [translations[this.props.number['fail_reason']], true],
+      ]);
+    } else {
+      arr = arr.concat([
+        ['Время', humanTime(this.props.number.time)],
+        ['Абсолют', `${this.props.number.absPos}/${this.props.total}`],
+        ['В категории', `${this.props.number.categoryPos}/${this.props.number.categoryTotal}`],
+        ['Среди пола', `${this.props.number.sexPos}/${this.props.number.sexTotal}`],
+        ['Время пред. финишера', this.props.number.prevTime && humanTime(this.props.number.prevTime)],
+        ['Время след. финишера', this.props.number.nextTime && humanTime(this.props.number.nextTime)],
+      ]);
+    }
 
     return (
         <div className={details.wrap}>

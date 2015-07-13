@@ -2,7 +2,7 @@ import React from 'react';
 
 import BaseGraph from './base-graph.js';
 
-import categories from '../data/categories.json';
+import {categories} from './store.js';
 import {humanCat} from './utils.js';
 
 export default class extends React.Component {
@@ -12,24 +12,19 @@ export default class extends React.Component {
       return null;
     }
 
-    const _category = this.props.selectedNumber.category;
-    var category;
-    const sex = this.props.selectedNumber.category.substring(0,1);
-    if (sex === 'M') {
-      category = categories.male[categories.male.indexOf(_category)+1];
-    } else if (sex === 'F') {
-      category = categories.female[categories.female.indexOf(_category)+1];
-    }
+    const currentCategory = this.props.selectedNumber.category;
+    const sex = currentCategory.substring(0,1);
+    const nextCategory = categories[categories.indexOf(currentCategory)+1];
 
-    if (!category) {
+    if (!nextCategory || nextCategory.substring(0,1) !== sex) {
       return null;
     }
 
-    const data = this.props.data.filter(i => i.category === category);
+    const data = this.props.data.filter(i => i.category === nextCategory);
 
     return (
           <BaseGraph
-              title={`Следующая категория (${humanCat(category)})`}
+              title={`Следующая категория (${humanCat(nextCategory)})`}
               selectedNumber={this.props.selectedNumber}
               data={data}
               graphStep={this.props.graphStep}

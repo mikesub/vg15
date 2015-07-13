@@ -22,7 +22,7 @@ export default class BaseGraph extends React.Component {
   render() {
     var bars = [];
     const selectedNumber = this.props.selectedNumber;
-    const data = this.props.data;
+    const data = this.props.data.filter(i => i.time);
     const graphStep = this.props.graphStep*1000;
 
     for (let x = Math.ceil(minTime / graphStep) * graphStep; x < maxTime + graphStep; x = x + graphStep) {

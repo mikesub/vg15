@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BaseGraph from './base-graph.js';
-import {sexTrl} from './utils.js';
+import {translations} from './utils.js';
 
 export default class extends React.Component {
 
@@ -21,7 +21,7 @@ export default class extends React.Component {
 
     return (
           <BaseGraph
-              title={sexTrl[oppositeSex]}
+              title={translations[oppositeSex]}
               selectedNumber={this.props.selectedNumber}
               data={data}
               graphStep={this.props.graphStep}

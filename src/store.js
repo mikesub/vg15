@@ -1,11 +1,25 @@
-import data from '../data/vg15.json';
+import _data from '../data/vg15.json';
 var onUp = null;
 
-const mCount = data.filter(i => i.category.substring(0,1) === 'M').length;
-const fCount = data.filter(i => i.category.substring(0,1) === 'F').length;
+// fix categories
+const data = _data.map((i) => {
+  if (i.category === null) {
+    i.category = '';
+    return i;
+  }
+  i.category = i.category.replace(' ', '');
+  return i;
+});
 
-export const minTime = data.reduce((prev, i) => (prev < i.time ? prev : i.time), Infinity);
-export const maxTime = data.reduce((prev, i) => (prev > i.time ? prev : i.time), -Infinity);
+const mCount = data.filter(i => i.category && i.category.substring(0,1) === 'M').length;
+const fCount = data.filter(i => i.category && i.category.substring(0,1) === 'F').length;
+
+export const minTime = data.filter(i => i.time).reduce((prev, i) => (prev < i.time ? prev : i.time), Infinity);
+export const maxTime = data.filter(i => i.time).reduce((prev, i) => (prev > i.time ? prev : i.time), -Infinity);
+
+export const categories = data.map(i => i.category).filter((value, index, self) => self.indexOf(value) === index);
+categories.sort();
+// holy shit
 
 export const state = {
   selectedNumber: undefined,

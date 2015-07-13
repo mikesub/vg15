@@ -8,13 +8,15 @@ function pad(num, digits) {
   return str;
 }
 
-export const sexTrl = {
+export const translations = {
   'M': 'Мужчины',
-  'F': 'Женщины'
+  'F': 'Женщины',
+  'DNF': 'Не финишировал',
+  'DNS': 'Не стартовал',
 };
 
 export function humanCat(c) {
-  return `${sexTrl[c.substring(0,1)]} ${c.substring(1)}`;
+  return `${translations[c.substring(0,1)]} ${c.substring(1)}`;
 }
 
 export function humanTime(t) {

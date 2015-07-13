@@ -2,11 +2,7 @@ import React from 'react';
 
 import BaseGraph from './base-graph.js';
 
-import categories from '../data/categories.json';
-
 import {humanCat} from './utils.js';
-
-const whiteList = Object.values(categories).reduce((prev, i) => (prev.concat(i)), []);
 
 export default class extends React.Component {
 
@@ -16,12 +12,11 @@ export default class extends React.Component {
     }
 
     const category = this.props.selectedNumber.category;
+    const data = this.props.data.filter(i => i.category === category);
 
-    if (!whiteList.includes(category)) {
+    if (data.length === 1) {
       return null;
     }
-
-    const data = this.props.data.filter(i => i.category === category);
 
     return (
           <BaseGraph
