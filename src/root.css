@@ -1,4 +1,4 @@
-body {
+body, input {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: white;
   box-sizing: border-box;
