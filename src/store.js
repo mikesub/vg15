@@ -19,7 +19,6 @@ export const maxTime = data.filter(i => i.time).reduce((prev, i) => (prev > i.ti
 
 export const categories = data.map(i => i.category).filter((value, index, self) => self.indexOf(value) === index);
 categories.sort();
-// holy shit
 
 export const state = {
   selectedNumber: undefined,
@@ -34,15 +33,16 @@ export function registerCallback(cb){
 export function selectNumber(number) {
 
   const x = data.filter((i) => i.number === number)[0];
+  const sorted = data.filter(i => i.time).sort((a,b) => a.time - b.time);
 
   if (x) {
-    x.absPos = data.filter((i) => (i.time < x.time)).length + 1;
-    x.categoryPos = data.filter(i => i.category === x.category && i.time < x.time).length + 1;
-    x.categoryTotal = data.filter(i => i.category === x.category).length;
-    x.sexPos = data.filter(i => i.category.substring(0, 1) === x.category.substring(0, 1) && i.time < x.time).length + 1;
+    x.absPos = sorted.filter((i) => (i.time < x.time)).length + 1;
+    x.categoryPos = sorted.filter(i => i.category === x.category && i.time < x.time).length + 1;
+    x.categoryTotal = sorted.filter(i => i.category === x.category).length;
+    x.sexPos = sorted.filter(i => i.category.substring(0, 1) === x.category.substring(0, 1) && i.time < x.time).length + 1;
     x.sexTotal = x.category.substring(0, 1) === 'M' ? mCount : fCount;
-    x.prevTime = data[(x.absPos-1)-1] && data[(x.absPos-1)-1].time;
-    x.nextTime = data[(x.absPos-1)+1] && data[(x.absPos-1)+1].time;
+    x.prevTime = sorted[(x.absPos-1)-1] && sorted[(x.absPos-1)-1].time;
+    x.nextTime = sorted[(x.absPos-1)+1] && sorted[(x.absPos-1)+1].time;
 
     state.selectedNumber = x;
     window.location.hash = x.number;
@@ -52,11 +52,6 @@ export function selectNumber(number) {
   }
 
   onUp && onUp(state);
-}
-
-export function changeGraphStep(value) {
-  state.graphStep = value;
-  onUp(state);
 }
 
 selectNumber(Number(window.location.hash.substr(1)));

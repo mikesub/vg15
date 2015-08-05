@@ -21,7 +21,7 @@ export default class Details extends React.Component {
     ];
     if (this.props.number['fail_reason'] !== null) {
       arr = arr.concat([
-        [translations[this.props.number['fail_reason']], true],
+        [translations[`${this.props.number.category.substring(0, 1)}${this.props.number['fail_reason']}`], true],
       ]);
     } else {
       arr = arr.concat([

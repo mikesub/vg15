@@ -11,8 +11,10 @@ function pad(num, digits) {
 export const translations = {
   'M': 'Мужчины',
   'F': 'Женщины',
-  'DNF': 'Не финишировал',
-  'DNS': 'Не стартовал',
+  'MDNF': 'Не финишировал',
+  'MDNS': 'Не стартовал',
+  'FDNF': 'Не финишировала',
+  'FDNS': 'Не стартовала',
 };
 
 export function humanCat(c) {
